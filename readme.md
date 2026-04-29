@@ -75,6 +75,8 @@ Open `http://localhost:8501` in your browser.
 **Durga Muthukrishnan** — AI Engineer | MSc Data Science & AI @ Middlesex University Dubai  
 [GitHub](https://github.com/Durgajk26) · [LinkedIn](https://linkedin.com/in/durgamuthukrishnan)
 
+## Live Demo
+👉 https://influenzai-bbxtz4cnzgf4ynyfgogcwh.streamlit.app
 ---
 
 ## License

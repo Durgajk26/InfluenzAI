@@ -1,5 +1,9 @@
 import streamlit as st
+from groq import Groq
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 st.set_page_config(
     page_title="InfluenzAI",
     page_icon="🎯",
@@ -42,5 +46,19 @@ niche = st. selectbox("Your niche", ["Lifestyle", "Tech", "Fitness", "Food", "Tr
 platform = st.selectbox("platform", ["Instagram", "TikTok", "LinkedIn", "YouTube"])
 mood = st.selectbox("Caption mood", ["Motivational", "Funny", "informative", "Personal"])
 
-if st. button("Generate Caption"):
-    st.info("AI is thinking... (we'll connect the real AI in Session 2!)")
+if st.button("Generate Caption"):
+    with st.spinner("AI is thinking..."):
+        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        
+        prompt = f"Write 3 creative {mood} captions for a {niche} influencer on {platform}. Include relevant hashtags. Keep each caption under 150 words."
+        
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+        
+        caption = response.choices[0].message.content
+        st.success("Here are your AI-generated captions!")
+        st.write(caption)

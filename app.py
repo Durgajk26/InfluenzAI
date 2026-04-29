@@ -74,7 +74,7 @@ mood = st.selectbox("Caption mood", ["Motivational", "Funny", "informative", "Pe
 
 if st.button("Generate Caption"):
     with st.spinner("AI is thinking..."):
-        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        client = Groq(api_key=st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY"))
         
         prompt = f"Write 3 creative {mood} captions for a {niche} influencer on {platform}. Include relevant hashtags. Keep each caption under 150 words."
         
